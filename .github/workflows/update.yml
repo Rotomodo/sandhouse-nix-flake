@@ -1,0 +1,35 @@
+name: Update
+
+# Once a day (or by hand): if Retomodo/sandhouse-releases has a newer
+# release, point sources.json at it, check it builds, and commit.
+on:
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - uses: cachix/install-nix-action@v31
+
+      - id: update
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: echo "version=$(nix develop -c ./update.sh)" >> "$GITHUB_OUTPUT"
+
+      - if: steps.update.outputs.version != ''
+        run: nix build --print-build-logs
+
+      - if: steps.update.outputs.version != ''
+        env:
+          VERSION: ${{ steps.update.outputs.version }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git commit -am "SandHouse $VERSION"
+          git push
