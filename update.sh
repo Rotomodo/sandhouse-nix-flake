@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# Points sources.json at the newest release of Retomodo/sandhouse-releases:
+# Points sources.json at the newest release of Rotomodo/sandhouse-releases:
 # its version and the .deb's hash. Prints the new version, or nothing when
 # sources.json was already current. CI runs it daily (.github/workflows/update.yml);
 # run it by hand with `nix develop -c ./update.sh`.
 set -euo pipefail
 cd "$(dirname "$0")"
 
-repo=Retomodo/sandhouse-releases
+repo=Rotomodo/sandhouse-releases
 file=sandhouse-linux-amd64.deb
 
 tag=$(curl -fsSL ${GITHUB_TOKEN:+-H "Authorization: Bearer $GITHUB_TOKEN"} \

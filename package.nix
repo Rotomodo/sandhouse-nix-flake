@@ -1,4 +1,4 @@
-# SandHouse from its Linux release: the .deb from Retomodo/sandhouse-releases,
+# SandHouse from its Linux release: the .deb from Rotomodo/sandhouse-releases,
 # unpacked, with its libraries pointed at the Nix store. sources.json says
 # which release; update.sh moves it to the newest.
 {

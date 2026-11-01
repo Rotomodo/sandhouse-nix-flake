@@ -2,7 +2,7 @@
 
 A Nix flake for [SandHouse](https://sandhouse.app)'s desktop app on NixOS
 or any Linux with Nix. It packages the official Linux release from
-[Retomodo/sandhouse-releases](https://github.com/Retomodo/sandhouse-releases)
+[Rotomodo/sandhouse-releases](https://github.com/Rotomodo/sandhouse-releases)
 and keeps up with new releases on its own.
 
 64-bit Intel/AMD (`x86_64-linux`) only for now.
@@ -10,7 +10,7 @@ and keeps up with new releases on its own.
 ## Try it
 
 ```sh
-nix run github:Retomodo/sandhouse-nix-flake
+nix run github:Rotomodo/sandhouse-nix-flake
 ```
 
 ## Install it
@@ -23,7 +23,7 @@ Add the flake to your system's `flake.nix` and turn on the module:
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    sandhouse.url = "github:Retomodo/sandhouse-nix-flake";
+    sandhouse.url = "github:Rotomodo/sandhouse-nix-flake";
     sandhouse.inputs.nixpkgs.follows = "nixpkgs";
   };
 
@@ -52,7 +52,7 @@ Add the flake to your system's `flake.nix` and turn on the module:
 ### A profile, without a configuration
 
 ```sh
-nix profile install github:Retomodo/sandhouse-nix-flake
+nix profile install github:Rotomodo/sandhouse-nix-flake
 ```
 
 ### The overlay
