@@ -10,11 +10,21 @@ on:
 permissions:
   contents: write
 
+# One run at a time: two at once (the daily one and one started by hand)
+# both commit on the same main, and the second push is rejected.
+concurrency:
+  group: update
+  cancel-in-progress: false
+
 jobs:
   update:
     runs-on: ubuntu-24.04
     steps:
+      # main as it is now, not the commit the run was started on: a run
+      # that waited for another must build on what that one pushed.
       - uses: actions/checkout@v6
+        with:
+          ref: main
       - uses: cachix/install-nix-action@v31
 
       - id: update
